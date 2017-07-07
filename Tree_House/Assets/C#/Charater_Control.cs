@@ -5,6 +5,7 @@ using UnityEngine;
 public class Charater_Control : MonoBehaviour {
 
     Rigidbody rb;
+    Place_Ladder placeLadderMe;
 
     public float movementSpeed;
     public float xSpeed;
@@ -15,6 +16,8 @@ public class Charater_Control : MonoBehaviour {
     // Use this for initialization
     void Start () {
         rb = GetComponent<Rigidbody>();
+        placeLadderMe = GetComponent<Place_Ladder>();
+
         mainCam = Camera.main;
 	}
 	
@@ -35,6 +38,11 @@ public class Charater_Control : MonoBehaviour {
         
         float rotationY = Input.GetAxis("Mouse Y") * ySpeed * Time.deltaTime;
         mainCam.transform.Rotate(-rotationY, 0.0f, 0.0f);
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            placeLadderMe.instaNewPlank();
+        }
         
     }
 }
